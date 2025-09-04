@@ -9,6 +9,7 @@ import {
   Utensils,
   ArrowRight 
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -91,11 +92,11 @@ export const CategoriesSection = () => {
           {categories.map((category, index) => {
             const Icon = category.icon;
             return (
-              <Card 
-                key={category.name} 
-                className="group cursor-pointer hover-lift border-0 shadow-soft hover:shadow-medium transition-smooth animate-fade-in bg-gradient-card"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+              <Link to="/categories" key={category.name}>
+                <Card 
+                  className="group cursor-pointer hover-lift border-0 shadow-soft hover:shadow-medium transition-smooth animate-fade-in bg-gradient-card"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
                 <CardContent className="p-6 text-center space-y-4">
                   <div className={`w-16 h-16 mx-auto rounded-xl flex items-center justify-center ${category.color} group-hover:scale-110 transition-smooth`}>
                     <Icon className="w-8 h-8" />
@@ -113,15 +114,18 @@ export const CategoriesSection = () => {
                   </div>
                 </CardContent>
               </Card>
+              </Link>
             );
           })}
         </div>
 
         <div className="text-center">
-          <Button variant="outline" size="lg" className="group">
-            View All Categories
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth" />
-          </Button>
+          <Link to="/categories">
+            <Button variant="outline" size="lg" className="group">
+              View All Categories
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

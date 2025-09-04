@@ -6,9 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useStore } from "@/contexts/StoreContext";
+import { SearchResults } from "@/components/SearchResults";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSearchResults, setShowSearchResults] = useState(false);
   const { state } = useStore();
   const location = useLocation();
 
@@ -49,7 +52,15 @@ export const Header = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
             <Input
               placeholder="Search products, suppliers, categories..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setShowSearchResults(true)}
               className="pl-10 bg-muted/50 border-0 focus:bg-background shadow-soft"
+            />
+            <SearchResults 
+              query={searchQuery}
+              isVisible={showSearchResults}
+              onClose={() => setShowSearchResults(false)}
             />
           </div>
         </div>
@@ -59,13 +70,17 @@ export const Header = () => {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            <Button variant="ghost" size="sm" className="hover:scale-105 transition-smooth">
-              <User className="w-4 h-4 mr-2" />
-              Login
-            </Button>
-            <Button variant="outline" size="sm" className="hover:scale-105 transition-smooth">
-              Sign Up
-            </Button>
+            <Link to="/login">
+              <Button variant="ghost" size="sm" className="hover:scale-105 transition-smooth">
+                <User className="w-4 h-4 mr-2" />
+                Login
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button variant="outline" size="sm" className="hover:scale-105 transition-smooth">
+                Sign Up
+              </Button>
+            </Link>
             <Link to="/wishlist">
               <Button variant="ghost" size="icon" className="relative hover:scale-110 transition-smooth">
                 <Heart className="w-5 h-5" />
@@ -131,12 +146,16 @@ export const Header = () => {
             
             {/* Mobile Actions */}
             <div className="flex gap-3 pt-3 border-t">
-              <Button variant="outline" size="sm" className="flex-1">
-                Login
-              </Button>
-              <Button variant="default" size="sm" className="flex-1">
-                Sign Up
-              </Button>
+              <Link to="/login" className="flex-1">
+                <Button variant="outline" size="sm" className="w-full">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/signup" className="flex-1">
+                <Button variant="default" size="sm" className="w-full">
+                  Sign Up
+                </Button>
+              </Link>
               <Link to="/wishlist">
                 <Button variant="ghost" size="icon" className="relative">
                   <Heart className="w-5 h-5" />

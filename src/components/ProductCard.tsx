@@ -89,7 +89,7 @@ const ProductCard = ({
               </div>
             </div>
             
-            <Button variant="cta" size="sm" className="group">
+            <Button variant="premium" size="sm" className="group">
               <ShoppingCart className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform" />
               Add to Cart
             </Button>
