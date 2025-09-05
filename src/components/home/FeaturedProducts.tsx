@@ -248,9 +248,11 @@ export const FeaturedProducts = () => {
         </div>
 
         <div className="text-center">
-          <Button variant="premium" size="lg" className="group">
-            View All Products
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth" />
+          <Button variant="premium" size="lg" className="group" asChild>
+            <Link to="/all-products">
+              View All Products
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth" />
+            </Link>
           </Button>
         </div>
       </div>

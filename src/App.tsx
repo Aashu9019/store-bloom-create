@@ -15,6 +15,9 @@ import Wholesale from "./pages/Wholesale";
 import RFQ from "./pages/RFQ";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import AllProducts from "./pages/AllProducts";
+import AdminDashboard from "./pages/admin/Dashboard";
+import SupplierPanel from "./pages/admin/SupplierPanel";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +41,9 @@ const App = () => (
               <Route path="/rfq" element={<RFQ />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/all-products" element={<AllProducts />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/supplier-panel" element={<SupplierPanel />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

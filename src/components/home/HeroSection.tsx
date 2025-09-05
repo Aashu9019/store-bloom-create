@@ -1,6 +1,7 @@
 import { ArrowRight, Play, TrendingUp, Users, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-image.jpg";
 
 export const HeroSection = () => {
@@ -28,9 +29,11 @@ export const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="group">
-                Start Sourcing Now
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth" />
+              <Button variant="hero" size="lg" className="group" asChild>
+                <Link to="/all-products">
+                  Start Sourcing Now
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth" />
+                </Link>
               </Button>
               <Button variant="outline" size="lg" className="group">
                 <Play className="w-4 h-4 mr-2" />
