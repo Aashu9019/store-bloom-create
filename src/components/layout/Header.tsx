@@ -21,16 +21,11 @@ export const Header = () => {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-6">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-smooth">
-              <Globe className="w-5 h-5 text-white" />
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-smooth shadow-medium">
+              <Globe className="w-6 h-6 text-white" />
             </div>
-            
-              <img src={logo} alt="Logo" />
-
-            {/* <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              DropMart
-            </span> */}
+            <img src={logo} alt="DropMart Logo" className="h-8 w-auto object-contain" />
           </Link>
           
           {/* Desktop Navigation */}

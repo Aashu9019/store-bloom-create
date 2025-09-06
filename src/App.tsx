@@ -23,21 +23,49 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import AdminLogin from "./pages/admin/AdminLogin";
 
-// Component to listen for Shift+Alt+A and navigate to /admin
+// Component to listen for Shift+Alt+A and show admin login
 const AdminShortcutListener = () => {
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const navigate = useNavigate();
+  
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.shiftKey && e.altKey && e.code === "KeyA") {
         e.preventDefault();
-        navigate("/admin");
+        if (isAdminLoggedIn) {
+          navigate("/admin");
+        } else {
+          setShowAdminLogin(true);
+        }
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [navigate]);
+  }, [navigate, isAdminLoggedIn]);
+
+  const handleAdminLogin = () => {
+    setIsAdminLoggedIn(true);
+    setShowAdminLogin(false);
+  };
+
+  if (showAdminLogin) {
+    return (
+      <div className="fixed inset-0 z-50">
+        <AdminLogin onLogin={handleAdminLogin} />
+        <button 
+          onClick={() => setShowAdminLogin(false)}
+          className="absolute top-4 right-4 z-50 text-white/80 hover:text-white text-2xl font-bold"
+        >
+          ×
+        </button>
+      </div>
+    );
+  }
+
   return null;
 };
 

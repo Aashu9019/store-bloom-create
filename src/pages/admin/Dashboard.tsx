@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,7 +16,11 @@ import {
   Eye,
   Trash2,
   Edit,
-  Search
+  Search,
+  LogOut,
+  Shield,
+  BarChart3,
+  Settings
 } from "lucide-react";
 
 // Dummy data
@@ -57,78 +62,117 @@ const recentReviews = [
 
 const AdminDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/");
+  };
 
   return (
-    <div className="min-h-screen bg-muted/30">
-      <div className="bg-background border-b">
-        <div className="container py-6">
-          <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <p className="text-muted-foreground">Manage your dropshipping platform</p>
+    <div className="min-h-screen bg-gradient-to-br from-muted/30 via-background to-muted/20">
+      {/* Enhanced Header with gradient */}
+      <div className="bg-gradient-to-r from-primary via-primary/90 to-secondary border-b shadow-medium">
+        <div className="container py-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <Shield className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
+                <p className="text-white/80">Manage your dropshipping platform</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+                <Settings className="w-4 h-4 mr-2" />
+                Settings
+              </Button>
+              <Button 
+                onClick={handleLogout}
+                variant="outline" 
+                className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="container py-8">
-        {/* Stats Cards */}
+        {/* Enhanced Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-          <Card>
+          <Card className="gradient-card border-primary/10 shadow-medium hover:shadow-strong transition-smooth hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-              <Users className="h-4 w-4 text-muted-foreground" />
+              <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                <Users className="h-4 w-4 text-blue-500" />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalUsers.toLocaleString()}</div>
-              <p className="text-xs text-muted-foreground">+12% from last month</p>
+              <p className="text-xs text-emerald-600 font-medium">+12% from last month</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="gradient-card border-primary/10 shadow-medium hover:shadow-strong transition-smooth hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Suppliers</CardTitle>
-              <Package className="h-4 w-4 text-muted-foreground" />
+              <div className="w-8 h-8 bg-purple-500/10 rounded-lg flex items-center justify-center">
+                <Package className="h-4 w-4 text-purple-500" />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalSuppliers.toLocaleString()}</div>
-              <p className="text-xs text-muted-foreground">+8% from last month</p>
+              <p className="text-xs text-emerald-600 font-medium">+8% from last month</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="gradient-card border-primary/10 shadow-medium hover:shadow-strong transition-smooth hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Products</CardTitle>
-              <ShoppingCart className="h-4 w-4 text-muted-foreground" />
+              <div className="w-8 h-8 bg-orange-500/10 rounded-lg flex items-center justify-center">
+                <ShoppingCart className="h-4 w-4 text-orange-500" />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalProducts.toLocaleString()}</div>
-              <p className="text-xs text-muted-foreground">+23% from last month</p>
+              <p className="text-xs text-emerald-600 font-medium">+23% from last month</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="gradient-card border-primary/10 shadow-medium hover:shadow-strong transition-smooth hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Orders</CardTitle>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              <div className="w-8 h-8 bg-green-500/10 rounded-lg flex items-center justify-center">
+                <TrendingUp className="h-4 w-4 text-green-500" />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalOrders.toLocaleString()}</div>
-              <p className="text-xs text-muted-foreground">+15% from last month</p>
+              <p className="text-xs text-emerald-600 font-medium">+15% from last month</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="gradient-card border-primary/10 shadow-medium hover:shadow-strong transition-smooth hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Revenue</CardTitle>
-              <DollarSign className="h-4 w-4 text-muted-foreground" />
+              <div className="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center">
+                <DollarSign className="h-4 w-4 text-emerald-500" />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">${stats.revenue.toLocaleString()}</div>
-              <p className="text-xs text-muted-foreground">+18% from last month</p>
+              <p className="text-xs text-emerald-600 font-medium">+18% from last month</p>
             </CardContent>
           </Card>
         </div>
 
-        {/* Management Tabs */}
+        {/* Enhanced Management Tabs */}
         <Tabs defaultValue="users" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-4 bg-muted/50 border border-primary/10 shadow-soft">
             <TabsTrigger value="users">Users</TabsTrigger>
             <TabsTrigger value="suppliers">Suppliers</TabsTrigger>
             <TabsTrigger value="products">Products</TabsTrigger>
@@ -137,7 +181,7 @@ const AdminDashboard = () => {
 
           {/* Users Tab */}
           <TabsContent value="users">
-            <Card>
+            <Card className="gradient-card border-primary/10 shadow-medium">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>User Management</CardTitle>
@@ -200,7 +244,7 @@ const AdminDashboard = () => {
 
           {/* Suppliers Tab */}
           <TabsContent value="suppliers">
-            <Card>
+            <Card className="gradient-card border-primary/10 shadow-medium">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Supplier Management</CardTitle>
@@ -268,7 +312,7 @@ const AdminDashboard = () => {
 
           {/* Products Tab */}
           <TabsContent value="products">
-            <Card>
+            <Card className="gradient-card border-primary/10 shadow-medium">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Product Management</CardTitle>
@@ -331,7 +375,7 @@ const AdminDashboard = () => {
 
           {/* Reviews Tab */}
           <TabsContent value="reviews">
-            <Card>
+            <Card className="gradient-card border-primary/10 shadow-medium">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Review Management</CardTitle>
