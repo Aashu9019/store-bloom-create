@@ -1,3 +1,4 @@
+import logo from "@/assets/logo.png";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Search, ShoppingCart, User, Menu, X, Globe, Heart } from "lucide-react";
@@ -24,9 +25,12 @@ export const Header = () => {
             <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-smooth">
               <Globe className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            
+              <img src={logo} alt="Logo" />
+
+            {/* <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               DropMart
-            </span>
+            </span> */}
           </Link>
           
           {/* Desktop Navigation */}
